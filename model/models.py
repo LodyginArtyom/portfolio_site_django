@@ -64,3 +64,17 @@ class Projects(models.Model):
         verbose_name_plural = 'Проекты'
 
 # Create your models here.
+class FeedBack(models.Model):
+    name = models.CharField(max_length=150, verbose_name='Имя отправителя')
+    email = models.EmailField(max_length=255, verbose_name='Email отправителя')
+    message = models.TextField(verbose_name='Текст сообщения')
+    time_create = models.DateField(default=date.today)
+    ip_adress = models.GenericIPAddressField(verbose_name='Ip=adress отправителя')
+
+    class Meta:
+         verbose_name = 'Обратная связь'
+         verbose_name_plural = 'Обратная связь'
+
+
+    def __str__(self):
+        return f'Вам письмо от {self.name}'
